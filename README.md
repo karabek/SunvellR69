@@ -5,31 +5,31 @@ Stuff for running linux on the Sunvell R69 TV box
 
 Factory Android "config_sys.bin"-file:
 
-´´´sunvell_r69.original.fex´´´
+```sunvell_r69.original.fex```
 
 FEX-file adapted for armbian (www.armbian.com):
 
-´´´sunvell_r69.armbian.fex´´´
+```sunvell_r69.armbian.fex```
 
 # mainline kernel - headless (no hdmi/TV-out)
 
 Kernel device tree:
 
-´´´sun8i-h2-plus-sunvell-r69.headless.kernel.dts´´´
+```sun8i-h2-plus-sunvell-r69.headless.kernel.dts```
 
 u-boot device tree:
 
-´´´sun8i-h2-plus-sunvell-r69.headless.u-boot.dts´´´
+```sun8i-h2-plus-sunvell-r69.headless.u-boot.dts```
 
 # mainline kernel - hdmi-support
 
 Kernel device tree:
 
-´´´tbd´´´
+```tbd```
 
 u-boot device tree:
 
-´´´tbd´´´
+```tbd```
 
 # supported features (mainline)
 
