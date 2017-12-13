@@ -25,11 +25,10 @@ u-boot device tree:
 
 Kernel device tree:
 
-```tbd```
+```sun8i-h2-plus-sunvell-r69.hdmi.kernel.dts```
 
-u-boot device tree:
-
-```tbd```
+Comment:
+This DT is work in progress - the current version does not seem to support hdmi video output.
 
 # supported features (mainline)
 
