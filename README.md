@@ -11,35 +11,26 @@ FEX-file adapted for armbian (www.armbian.com):
 
 ```sunvell_r69.armbian.fex```
 
-# mainline kernel - headless (no hdmi/TV-out)
+# mainline kernel 
 
 Kernel device tree:
 
-```sun8i-h2-plus-sunvell-r69.headless.kernel.dts```
+```sun8i-h2-plus-sunvell-r69.kernel.dts```
 
 u-boot device tree:
 
-```sun8i-h2-plus-sunvell-r69.headless.u-boot.dts```
-
-# mainline kernel - hdmi-support
-
-Kernel device tree:
-
-```sun8i-h2-plus-sunvell-r69.hdmi.kernel.dts```
-
-Comment:
-This DT is work in progress - the current version does not seem to support hdmi video output.
+```sun8i-h2-plus-sunvell-r69.u-boot.dts```
 
 # supported features (mainline)
 
 - Ethernet
 - WLAN
-- eMMC
+- HDMI
+- eMMC, boot from eMMC works
 - both USB-ports configured as hosts
 - audio deactivated by default, can be activated via DT-overlay
 - IR deactivated by default, can be activated via DT-overlay
 - blue LED as power-on indicator
-- HDMI deactived by defaul (headless-version)
 
 # build instructions using armbian (www.armbian.com)
 
@@ -49,5 +40,6 @@ See https://docs.armbian.com/Developer-Guide_Build-Preparation/ for details on k
 # git clone --depth 1 https://github.com/armbian/build
 # cd build
 # ./compile.sh BOARD=sunvell-r69
+```
 
 

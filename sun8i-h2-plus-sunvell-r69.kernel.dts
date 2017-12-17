@@ -1,6 +1,5 @@
 /*
- * Based original Sunvell R69 FEX file
- *   Copyright (C) 2017 M. R. Karabek <github.com/karabek>
+ * Based original Sunvell R69 FEX file (2017 <github.com/karabek>)
  *
  * This file is dual-licensed: you can use it either under the terms
  * of the GPL or the X11 license, at your option. Note that this dual
@@ -55,12 +54,23 @@
 
 	aliases {
 		serial0 = &uart0;
-		/* ethernet0 is the H3 emac, defined in sun8i-h3.dtsi */
+		ethernet0 = &emac;
 		ethernet1 = &xr819;
 	};
 
 	chosen {
 		stdout-path = "serial0:115200n8";
+	};
+
+	connector {
+		compatible = "hdmi-connector";
+		type = "a";
+
+		port {
+			hdmi_con_in: endpoint {
+				remote-endpoint = <&hdmi_out_con>;
+			};
+		};
 	};
 
 	leds {
@@ -69,7 +79,7 @@
 		pwr_led {
 			label = "sunvell-r69:blue:pwr";
 			gpios = <&pio 0 15 GPIO_ACTIVE_HIGH>;
-			default-state = "on";
+			linux,default-trigger = "heartbeat";
 		};
 
 		status_led {
@@ -83,14 +93,24 @@
 		regulator-min-microvolt = <3300000>;
 		regulator-max-microvolt = <3300000>;
 		regulator-name = "vcc-wifi";
-		enable-active-high;
 		gpio = <&r_pio 0 7 GPIO_ACTIVE_HIGH>;
+	        startup-delay-us = <70000>;
+		enable-active-high;
 	};
 
 	wifi_pwrseq: wifi_pwrseq {
 		compatible = "mmc-pwrseq-simple";
 		reset-gpios = <&r_pio 0 0 GPIO_ACTIVE_LOW>;
+		post-power-on-delay-ms = <200>;
 	};
+};
+
+&de {
+	status = "okay";
+};
+
+&ehci0 {
+	status = "okay";
 };
 
 &ehci1 {
@@ -98,14 +118,28 @@
 };
 
 &emac {
-	phy = <&phy1>;
+	phy-handle = <&int_mii_phy>;
 	phy-mode = "mii";
-	allwinner,use-internal-phy;
 	allwinner,leds-active-low;
 	status = "okay";
-	phy1: ethernet-phy@1 {
-		reg = <1>;
+};
+
+&hdmi {
+	status = "okay";
+};
+
+&hdmi_out {
+	hdmi_out_con: endpoint {
+		remote-endpoint = <&hdmi_con_in>;
 	};
+};
+
+&i2s2 {
+	status = "okay";
+};
+
+&mixer0 {
+	status = "okay";
 };
 
 &mmc0 {
@@ -113,7 +147,7 @@
 	pinctrl-0 = <&mmc0_pins_a>;
 	vmmc-supply = <&reg_vcc3v3>;
 	bus-width = <4>;
-	cd-gpios = <&pio 5 6 GPIO_ACTIVE_HIGH>; /* PF6 */
+	cd-gpios = <&pio 5 6 GPIO_ACTIVE_HIGH>;
 	cd-inverted;
 	status = "okay";
 };
@@ -133,7 +167,15 @@
 	 */
 	xr819: sdio_wifi@1 {
 		reg = <1>;
+		compatible = "xradio,xr819";
+		interrupt-parent = <&pio>;
+		interrupts = <0 11 IRQ_TYPE_EDGE_RISING>;
+		interrupt-names = "host-wake";
 	};
+};
+
+&mmc1_pins_a {
+	bias-pull-up;
 };
 
 &mmc2 {
@@ -146,18 +188,30 @@
 	status = "okay";
 };
 
-&mmc2_8bit_pins {
-	/* Increase current from 30mA to 40mA for DDR eMMC */
-	allwinner,drive = <SUN4I_PINCTRL_40_MA>;
+&ohci0 {
+	status = "okay";
 };
 
 &ohci1 {
 	status = "okay";
 };
 
+&sound_hdmi {
+	status = "okay";
+};
+
+&tcon0 {
+	status = "okay";
+};
+
 &uart0 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&uart0_pins_a>;
+	status = "okay";
+};
+
+&usb_otg {
+	dr_mode = "host";		/* host -or- peripheral */
 	status = "okay";
 };
 
