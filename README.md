@@ -1,4 +1,4 @@
-# SunvellR69
+# Sunvell R69
 Stuff for running linux on the Sunvell R69 TV box
 
 # legacy kernel
@@ -25,7 +25,7 @@ u-boot device tree:
 
 - Ethernet
 - WLAN
-- HDMI
+- HDMI (works with 4.15, currently not with 4.16!)
 - eMMC, boot from eMMC works
 - both USB-ports configured as hosts
 - audio deactivated by default, can be activated via DT-overlay
