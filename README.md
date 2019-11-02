@@ -1,5 +1,6 @@
 # Sunvell R69
 Stuff for running linux on the Sunvell R69 TV box
+Disclaimer: There are several versions of this box around - this here works for Revision 1.3 (2017. red PCB)
 
 # legacy kernel
 
